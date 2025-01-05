@@ -1,0 +1,399 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+/* 2. Remove default margin */
+* {
+    font-family: "Lucida Console", "Courier New", monospace;
+    margin: 0;
+}
+
+body {
+    background-color: #f4f4f4;
+    display: inline; /* Flexbox for centering content */
+    justify-content: center;
+    align-items: center;
+    margin: 0; /* Remove default body margins */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+}
+
+.header-right {
+    display: flex; /* Use Flexbox to arrange items in a row */
+    justify-content: flex-end; /* Align items to the right */
+    align-items: center; /* Center items vertically */
+    gap: 10px; /* Add equal spacing between the buttons */
+}
+
+/* Header Right Container */
+.header-right {
+    display: flex; /* Flexbox for layout */
+    justify-content: flex-end; /* Align items to the right */
+    align-items: center; /* Vertically center items */
+    gap: 10px; /* Add spacing between buttons */
+}
+
+/* Chosen Planes and Logout Controls */
+.header-controls {
+    display: flex; /* Flexbox for layout */
+    align-items: center; /* Vertically center items */
+    gap: 10px; /* Spacing between the span and button */
+}
+
+/* Span for Chosen Planes */
+.chosen-planes {
+    display: inline-block; /* Ensure it behaves like a button */
+    background-color: #fff; /* Match the logout button */
+    color: #007bff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #007bff; /* Add a border for consistency */
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.5;
+    min-width: 120px; /* Set a consistent width */
+}
+
+/* Button for Logout */
+.logout-btn, .header-btn {
+    display: inline-block;
+    background-color: #fff;
+    color: #007bff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 120px; /* Set a consistent width */
+    text-align: center;
+}
+
+.logout-btn:hover, .header-btn:hover {
+    background-color: #afc3d4;
+    transition: all 0.5s ease;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.footer-left, .footer-center {
+    margin: 0;
+    text-align: center;
+}
+
+/* Layout-specific container */
+.layout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    background-image: url('/images/PlaneBG.gif'); /* Set background image */
+    background-size: cover; /* Ensure the image covers the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    height: 90vh; /* Full height of the viewport */
+}
+
+/* Form-specific container (login and register views) */
+.form-container, .container {
+    width: 50%; /* Increased width */
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: auto; /* Prevent shrinking on small screens */
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.6); /* Fallback for older browsers */
+    padding: 40px; /* Better spacing */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin: 10px;
+}
+
+h2 {
+    margin: 8px;
+}
+
+.container p {
+    margin: 10px;
+}
+
+form {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Form control styling */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Restrict the size of the textarea */
+textarea.form-control {
+    max-width: 100%; /* Ensure it does not exceed the form width */
+    max-height: 150px; /* Set a maximum height */
+    resize: vertical; /* Allow vertical resizing only */
+}
+
+/* Scrollable plane list */
+.scrollable {
+    max-height: 200px; /* Adjust height as needed */
+    margin: 10px;
+    overflow-y: auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Button Group Styles */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.btn.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.btn, button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.btn:hover, button:hover {
+    background-color: #0056b3;
+    transition: all 0.5s ease;
+}
+
+/* Plane List Styles */
+.plane-list {
+    list-style-type: none; /* Remove list item markers */
+    padding: 0;
+}
+
+.plane-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px; /* Add spacing between list items */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+.plane-item .plane-name {
+    flex: 2;
+    text-align: left;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.plane-item .plane-info {
+    flex: 6;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
+
+.plane-item .remove-btn {
+    flex: 1;
+    text-align: center;
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.plane-item .remove-btn:hover {
+    background-color: #ff0000;
+    transition: all 0.5s ease;
+}
+
+.plane-item a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.plane-item a:hover {
+    text-decoration: underline;
+}
+
+.plane-info {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Header and Pagination Arrows */
+.planes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.planes-header h1 {
+    text-align: center;
+    flex-grow: 1;
+    margin: 0;
+    font-size: 24px;
+}
+
+.arrow {
+    font-size: 2em;
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.arrow.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.arrow:hover {
+    text-decoration: none;
+    color: #0056b3;
+}
+
+/* Plane List */
+.plane-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.plane-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+.plane-item a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.plane-item a:hover {
+    text-decoration: underline;
+}
+
+.plane-info {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Page Numbers */
+.page-numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 5px;
+    height: 40px;
+}
+
+.page-numbers .page-link,
+.page-numbers .current,
+.page-numbers .dots {
+    display: flex;
+    align-items: center; /* Center text vertically */
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 100%; /* Match the height of the container */
+}
+
+.page-numbers .page-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.page-numbers .page-link:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.page-numbers .current {
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+}
+
+.page-numbers .dots {
+    color: #555;
+}
