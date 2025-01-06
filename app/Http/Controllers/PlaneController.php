@@ -11,7 +11,7 @@ class PlaneController extends Controller
     {
         $planes = Plane::paginate(6); // Ensure pagination is used
         $isAdmin = auth()->user()->worker && auth()->user()->worker->is_admin;
-        return view('planes', compact('planes', 'isAdmin'));
+        return view('planes.index', compact('planes', 'isAdmin'));
     }
 
     public function show($id)
@@ -23,7 +23,7 @@ class PlaneController extends Controller
             && $user->customer->shoppingCarts()->latest('id')->first()
             && $user->customer->shoppingCarts()->latest('id')->first()->planes->contains($plane->id);
 
-        return view('plane-details', compact('plane', 'inCart', 'userType'));
+        return view('planes.details', compact('plane', 'inCart', 'userType'));
     }
 
     public function edit($id)
@@ -34,11 +34,18 @@ class PlaneController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'plane_name' => 'required|string|min:2|regex:/[A-Z]/',
+            'model' => 'required|string|min:2|max:50',
+            'capacity' => 'required|integer|min:1|max:100000',
+            'speed' => 'required|integer|min:1|max:100000',
+            'status' => 'required|string|in:available,unavailable',
+        ]);
+
         $plane = Plane::findOrFail($id);
         $plane->update($request->all());
 
-        return redirect()->route('planes.show', $plane->id)
-            ->with('success', 'Plane updated successfully.');
+        return redirect()->route('planes.index')->with('success', 'Plane updated successfully.');
     }
 
         public function destroy($id)
@@ -47,6 +54,26 @@ class PlaneController extends Controller
         $plane->delete();
 
         return redirect()->route('planes.index')->with('success', 'Plane deleted successfully.');
+    }
+
+    public function create()
+    {
+        return view('planes.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'plane_name' => 'required|string|min:2|regex:/[A-Z]/',
+            'model' => 'required|string|min:2|max:50',
+            'capacity' => 'required|integer|min:1|max:100000',
+            'speed' => 'required|integer|min:1|max:100000',
+            'status' => 'required|string|in:available,unavailable',
+        ]);
+
+        Plane::create($request->all());
+
+        return redirect()->route('planes.index')->with('success', 'Plane created successfully.');
     }
 }
 

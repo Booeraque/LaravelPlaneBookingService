@@ -3,20 +3,38 @@
 @section('content')
     <div class="container">
         <h1>Edit Booking</h1>
+
+        <!-- Display Validation Errors -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form method="POST" action="{{ route('bookings.update', $booking->id) }}">
             @csrf
             @method('PUT')
             <div class="form-group">
                 <label for="worker_id">Choose Worker</label>
-                <select id="worker_id" name="worker_id" class="form-control">
+                <select id="worker_id" name="worker_id" class="form-control @error('worker_id') is-invalid @enderror">
                     @foreach($workers as $worker)
                         <option value="{{ $worker->id }}" {{ $worker->id == $booking->worker_id ? 'selected' : '' }}>{{ $worker->user->name }}</option>
                     @endforeach
                 </select>
+                @error('worker_id')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="additional_comments">Additional Comments</label>
-                <textarea id="additional_comments" name="additional_comments" class="form-control">{{ $booking->additional_comments }}</textarea>
+                <textarea id="additional_comments" name="additional_comments" class="form-control @error('additional_comments') is-invalid @enderror">{{ $booking->additional_comments }}</textarea>
+                @error('additional_comments')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
             </div>
             <div class="button-group form-group">
                 <button type="submit" class="btn">Save Changes</button>

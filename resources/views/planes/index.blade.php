@@ -14,6 +14,9 @@
             <h1>Planes</h1>
 
             <!-- Right Arrow -->
+                @if(Auth::user()->worker && Auth::user()->worker->is_admin)
+                    <a href="{{ route('planes.create') }}" class="btn" style="margin-right: 10px">Add a Plane</a>
+                @endif
             @if ($planes->hasMorePages())
                 <a href="{{ $planes->nextPageUrl() }}" class="arrow">></a>
             @else
@@ -29,10 +32,10 @@
                     <span class="plane-info">Model: {{ $plane->model }} | Capacity: {{ $plane->capacity }}</span>
                     @if ($isAdmin)
                         <a href="{{ route('planes.edit', $plane->id) }}" class="btn">Edit</a>
-                        <form method="POST" action="{{ route('planes.destroy', $plane->id) }}" style="display:inline;">
+                        <form method="POST" action="{{ route('planes.destroy', $plane->id) }}" class="btn" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn">Delete</button>
+                            <button type="submit">Delete</button>
                         </form>
                     @endif
                 </li>

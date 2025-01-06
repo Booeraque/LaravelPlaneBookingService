@@ -1,4 +1,3 @@
-<!-- resources/views/layouts/app.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +23,10 @@
             @else
                 <div class="header-controls">
                     @auth
+                        @if(Auth::user()->worker && Auth::user()->worker->is_admin)
+                            <a href="{{ route('planes.index') }}" class="header-btn">Manage Planes</a>
+                            <a href="{{ route('users.index') }}" class="header-btn">Manage Users</a>
+                        @endif
                         @if(Auth::user()->customer)
                             @php
                                 $latestCart = auth()->user()->customer->shoppingCarts()->latest('id')->first();

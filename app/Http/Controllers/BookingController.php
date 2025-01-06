@@ -92,12 +92,17 @@ class BookingController extends Controller
 
     public function update(Request $request, $id)
     {
-        $booking = Booking::findOrFail($id);
-        $booking->update([
-            'worker_id' => $request->worker_id,
-            'additional_comments' => $request->additional_comments,
+        $request->validate([
+            'worker_id' => 'required|exists:workers,id',
+            'additional_comments' => 'nullable|string|max:100',
         ]);
 
-        return redirect()->route('bookings.show', $id)->with('success', 'Booking updated successfully.');
+        $booking = Booking::findOrFail($id);
+        $booking->worker_id = $request->worker_id;
+        $booking->additional_comments = $request->additional_comments;
+        $booking->save();
+
+        return redirect()->route('bookings.show', $booking->id)
+            ->with('success', 'Booking updated successfully.');
     }
 }

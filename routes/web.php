@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlaneController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\BookingController;
@@ -43,10 +44,22 @@ Route::controller(BookingController::class)->group(function () {
 
 Route::controller(PlaneController::class)->group(function () {
     Route::get('/planes', 'index')->name('planes.index');
+    Route::get('/planes/create', 'create')->name('planes.create');
+    Route::post('/planes', 'store')->name('planes.store');
     Route::get('/planes/{plane}', 'show')->name('planes.show');
     Route::get('/planes/{plane}/edit', 'edit')->name('planes.edit');
-    Route::put('/planes/{plane}', 'update')->name('planes.update'); // Add this line
+    Route::put('/planes/{plane}', 'update')->name('planes.update');
     Route::delete('/planes/{plane}', 'destroy')->name('planes.destroy');
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/users', 'index')->name('users.index');
+    Route::get('/users/create', 'create')->name('users.create');
+    Route::post('/users', 'store')->name('users.store');
+    Route::get('/users/{user}', 'show')->name('users.show');
+    Route::get('/users/{user}/edit', 'edit')->name('users.edit');
+    Route::put('/users/{user}', 'update')->name('users.update');
+    Route::delete('/users/{user}', 'destroy')->name('users.destroy');
 });
 
 Route::controller(CartController::class)->group(function () {

@@ -17,15 +17,21 @@
             </ul>
             <div class="form-group">
                 <label for="worker_id">Choose Worker</label>
-                <select id="worker_id" name="worker_id" class="form-control">
+                <select id="worker_id" name="worker_id" class="form-control @error('worker_id') is-invalid @enderror" required>
                     @foreach($workers as $worker)
                         <option value="{{ $worker->id }}">{{ $worker->user->name }}</option>
                     @endforeach
                 </select>
+                @error('worker_id')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="additional_comments">Additional Comments</label>
-                <textarea id="additional_comments" name="additional_comments" class="form-control"></textarea>
+                <textarea id="additional_comments" name="additional_comments" class="form-control @error('additional_comments') is-invalid @enderror" maxlength="100"></textarea>
+                @error('additional_comments')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
             </div>
             <div class="form-group button-group">
                 <button type="button" class="btn" onclick="history.back()">Cancel</button>

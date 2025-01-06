@@ -206,7 +206,7 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 a.btn, button {
@@ -262,15 +262,18 @@ a.btn:hover, button:hover {
 .plane-item .btn, .plane-item button {
     flex: 1;
     text-align: center;
+    font-size: 0.8em;
+    font-weight: bold;
     background-color: #ff4d4d;
     color: #fff;
     border: none;
     border-radius: 4px;
     padding: 5px 10px;
+    margin: 0 5px;
     cursor: pointer;
 }
 
-.plane-item .btn:hover {
+.plane-item .btn:hover, .plane-item button:hover{
     background-color: #ff0000;
     transition: all 0.5s ease;
 }
@@ -282,7 +285,7 @@ a.btn:hover, button:hover {
 }
 
 .plane-item a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .plane-info {
@@ -324,39 +327,6 @@ a.btn:hover, button:hover {
     color: #0056b3;
 }
 
-/* Plane List */
-.plane-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.plane-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    margin-bottom: 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 18px;
-}
-
-.plane-item a {
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
-}
-
-.plane-item a:hover {
-    text-decoration: underline;
-}
-
-.plane-info {
-    font-size: 14px;
-    color: #555;
-}
-
 /* Page Numbers */
 .page-numbers {
     display: flex;
@@ -396,4 +366,14 @@ a.btn:hover, button:hover {
 
 .page-numbers .dots {
     color: #555;
+}
+
+.form-control.is-invalid {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.875em;
+    margin-top: 5px;
 }
