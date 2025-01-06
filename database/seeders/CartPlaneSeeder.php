@@ -11,7 +11,7 @@ class CartPlaneSeeder extends Seeder
 {
     public function run(): void
     {
-        $planeIds = Plane::where('status', 'Available')->pluck('id')->toArray();
+        $planeIds = Plane::where('status', 'available')->pluck('id')->toArray();
 
         for ($i = 1; $i <= 3; $i++) {
             $cart = ShoppingCart::find($i);

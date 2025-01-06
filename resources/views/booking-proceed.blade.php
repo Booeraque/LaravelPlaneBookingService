@@ -1,3 +1,4 @@
+<!-- booking-proceed.blade.php -->
 @extends('layouts.app')
 
 @section('content')
@@ -28,7 +29,9 @@
             </div>
             <div class="form-group">
                 <label for="additional_comments">Additional Comments</label>
-                <textarea id="additional_comments" name="additional_comments" class="form-control @error('additional_comments') is-invalid @enderror" maxlength="100"></textarea>
+                <textarea id="additional_comments"
+                          name="additional_comments"
+                          class="form-control @error('additional_comments') is-invalid @enderror"></textarea>
                 @error('additional_comments')
                     <span class="invalid-feedback">{{ $message }}</span>
                 @enderror

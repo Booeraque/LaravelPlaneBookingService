@@ -37,43 +37,49 @@ class BookingController extends Controller
         return view('booking-proceed', compact('cart', 'workers'));
     }
 
-    public function confirm(Request $request)
-    {
-        $user = auth()->user();
+// BookingController.php
+public function confirm(Request $request)
+{
+    $user = auth()->user();
 
-        if (!$user || !$user->customer) {
-            return redirect()->back()->with('error', 'User or customer not found.');
-        }
-
-        $cart = $user->customer->shoppingCarts()->latest('id')->first();
-        if (!$cart) {
-            return redirect()->back()->with('error', 'No shopping cart found.');
-        }
-
-        $booking = Booking::create([
-            'cart_id' => $cart->id,
-            'customer_id' => $user->customer->id,
-            'worker_id' => $request->worker_id,
-            'booking_date' => now(),
-            'additional_comments' => $request->additional_comments,
-        ]);
-
-        // Update the plane status to unavailable
-        foreach ($cart->planes as $plane) {
-            $plane->update(['status' => 'unavailable']);
-        }
-
-        // Create a new shopping cart for the customer
-        $newCart = ShoppingCart::create([
-            'customer_id' => $user->customer->id,
-        ]);
-
-        // Assign the new shopping cart to the customer
-        $user->customer->shopping_cart_id = $newCart->id;
-        $user->customer->save();
-
-        return redirect()->route('profile')->with('success', 'Booking confirmed.');
+    if (!$user || !$user->customer) {
+        return redirect()->back()->with('error', 'User or customer not found.');
     }
+
+    $cart = $user->customer->shoppingCarts()->latest('id')->first();
+    if (!$cart) {
+        return redirect()->back()->with('error', 'No shopping cart found.');
+    }
+
+    $request->validate([
+        'worker_id' => 'required|exists:workers,id',
+        'additional_comments' => 'nullable|string|max:100',
+    ]);
+
+    $booking = Booking::create([
+        'cart_id' => $cart->id,
+        'customer_id' => $user->customer->id,
+        'worker_id' => $request->worker_id,
+        'booking_date' => now(),
+        'additional_comments' => $request->additional_comments,
+    ]);
+
+    // Update the plane status to unavailable
+    foreach ($cart->planes as $plane) {
+        $plane->update(['status' => 'unavailable']);
+    }
+
+    // Create a new shopping cart for the customer
+    $newCart = ShoppingCart::create([
+        'customer_id' => $user->customer->id,
+    ]);
+
+    // Assign the new shopping cart to the customer
+    $user->customer->shopping_cart_id = $newCart->id;
+    $user->customer->save();
+
+    return redirect()->route('profile')->with('success', 'Booking confirmed.');
+}
 
     public function workerBookings()
     {

@@ -16,15 +16,15 @@ class ProfileController extends Controller
 
     public function edit()
     {
-        return view('profile-edit');
+        $user = auth()->user();
+        return view('profile-edit', compact('user'));
     }
-
     public function update(Request $request)
     {
         $request->validate([
-            'username' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:50',
+            'email' => 'required|string|email|max:50',
+            'name' => 'required|string|max:50',
         ]);
 
         $user = Auth::user();
