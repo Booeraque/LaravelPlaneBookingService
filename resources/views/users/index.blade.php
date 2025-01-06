@@ -29,7 +29,8 @@
                     <a href="{{ route('users.show', $user->id) }}">{{ $user->name }}</a>
                     <span class="plane-info">Email: {{ $user->email }}</span>
                     <a href="{{ route('users.edit', $user->id) }}" class="btn">Edit</a>
-                    <form method="POST" action="{{ route('users.destroy', $user->id) }}" class="btn" style="display:inline;">
+                    <form method="POST" action="{{ route('users.destroy', $user->id) }}"
+                          class="btn" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Delete</button>

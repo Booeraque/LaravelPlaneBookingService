@@ -18,7 +18,8 @@
             </ul>
             <div class="form-group">
                 <label for="worker_id">Choose Worker</label>
-                <select id="worker_id" name="worker_id" class="form-control @error('worker_id') is-invalid @enderror" required>
+                <select id="worker_id" name="worker_id"
+                        class="form-control @error('worker_id') is-invalid @enderror" required>
                     @foreach($workers as $worker)
                         <option value="{{ $worker->id }}">{{ $worker->user->name }}</option>
                     @endforeach

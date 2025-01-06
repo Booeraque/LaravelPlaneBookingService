@@ -28,7 +28,8 @@
                 @foreach($bookings as $booking)
                     <li class="plane-item">
                         <a href="{{ route('bookings.show', $booking->id) }}">Booking #{{ $booking->id }}</a>
-                        <span class="plane-info">Date: {{ $booking->booking_date }} | Worker: {{ $booking->worker->user->name }}</span>
+                        <span class="plane-info">Date: {{ $booking->booking_date }} |
+                            Worker: {{ $booking->worker->user->name }}</span>
                     </li>
                 @endforeach
             </ul>

@@ -8,28 +8,36 @@
             @method('PUT')
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" id="plane_name" name="plane_name" class="form-control @error('plane_name') is-invalid @enderror" value="{{ old('name', $plane->plane_name) }}" required>
+                <input type="text" id="plane_name" name="plane_name"
+                       class="form-control @error('plane_name') is-invalid @enderror"
+                       value="{{ old('name', $plane->plane_name) }}" required>
                 @error('name')
                     <span class="error-message">{{ $message }}</span>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="model">Model</label>
-                <input type="text" id="model" name="model" class="form-control @error('model') is-invalid @enderror" value="{{ old('model', $plane->model) }}" required>
+                <input type="text" id="model" name="model"
+                       class="form-control @error('model') is-invalid @enderror"
+                       value="{{ old('model', $plane->model) }}" required>
                 @error('model')
                     <span class="error-message">{{ $message }}</span>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="capacity">Capacity</label>
-                <input type="number" id="capacity" name="capacity" class="form-control @error('capacity') is-invalid @enderror" value="{{ old('capacity', $plane->capacity) }}" required>
+                <input type="number" id="capacity" name="capacity"
+                       class="form-control @error('capacity') is-invalid @enderror"
+                       value="{{ old('capacity', $plane->capacity) }}" required>
                 @error('capacity')
                     <span class="error-message">{{ $message }}</span>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="speed">Speed</label>
-                <input type="number" id="speed" name="speed" class="form-control @error('speed') is-invalid @enderror" value="{{ old('speed', $plane->speed) }}" required>
+                <input type="number" id="speed" name="speed"
+                       class="form-control @error('speed') is-invalid @enderror"
+                       value="{{ old('speed', $plane->speed) }}" required>
                 @error('speed')
                     <span class="error-message">{{ $message }}</span>
                 @enderror

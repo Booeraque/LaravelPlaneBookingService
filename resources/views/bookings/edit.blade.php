@@ -11,7 +11,8 @@
                 <label for="worker_id">Choose Worker</label>
                 <select id="worker_id" name="worker_id" class="form-control @error('worker_id') is-invalid @enderror">
                     @foreach($workers as $worker)
-                        <option value="{{ $worker->id }}" {{ $worker->id == $booking->worker_id ? 'selected' : '' }}>{{ $worker->user->name }}</option>
+                        <option value="{{ $worker->id }}"
+                            {{ $worker->id == $booking->worker_id ? 'selected' : '' }}>{{ $worker->user->name }}</option>
                     @endforeach
                 </select>
                 @error('worker_id')
@@ -20,7 +21,8 @@
             </div>
             <div class="form-group">
                 <label for="additional_comments">Additional Comments</label>
-                <textarea id="additional_comments" name="additional_comments" class="form-control @error('additional_comments') is-invalid @enderror">{{ $booking->additional_comments }}</textarea>
+                <textarea id="additional_comments" name="additional_comments"
+                          class="form-control @error('additional_comments') is-invalid @enderror">{{ $booking->additional_comments }}</textarea>
                 @error('additional_comments')
                     <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
