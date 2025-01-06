@@ -1,7 +1,7 @@
 *, *::before, *::after {
   box-sizing: border-box;
 }
-/* 2. Remove default margin */
+
 * {
     font-family: "Lucida Console", "Courier New", monospace;
     margin: 0;
@@ -9,10 +9,10 @@
 
 body {
     background-color: #f4f4f4;
-    display: inline; /* Flexbox for centering content */
+    display: inline;
     justify-content: center;
     align-items: center;
-    margin: 0; /* Remove default body margins */
+    margin: 0;
 }
 
 header {
@@ -33,31 +33,31 @@ header {
 
 /* Header Right Container */
 .header-right {
-    display: flex; /* Flexbox for layout */
-    justify-content: flex-end; /* Align items to the right */
-    align-items: center; /* Vertically center items */
-    gap: 10px; /* Add spacing between buttons */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
 }
 
 /* Chosen Planes and Logout Controls */
 .header-controls {
-    display: flex; /* Flexbox for layout */
-    align-items: center; /* Vertically center items */
-    gap: 10px; /* Spacing between the span and button */
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 /* Span for Chosen Planes */
 .chosen-planes {
-    display: inline-block; /* Ensure it behaves like a button */
-    background-color: #fff; /* Match the logout button */
+    display: inline-block;
+    background-color: #fff;
     color: #007bff;
     padding: 5px 10px;
     border-radius: 4px;
-    border: 1px solid #007bff; /* Add a border for consistency */
+    border: 1px solid #007bff;
     font-size: 14px;
     text-align: center;
     line-height: 1.5;
-    min-width: 120px; /* Set a consistent width */
+    min-width: 120px;
 }
 
 /* Button for Logout */
@@ -70,7 +70,7 @@ header {
     border: none;
     font-size: 14px;
     cursor: pointer;
-    min-width: 120px; /* Set a consistent width */
+    min-width: 120px;
     text-align: center;
 }
 
@@ -112,7 +112,7 @@ footer {
 
 /* Form-specific container (login and register views) */
 .form-container, .container {
-    width: 50%; /* Increased width */
+    width: 50%;
     max-width: 100%;
     box-sizing: border-box;
     min-width: auto; /* Prevent shrinking on small screens */
@@ -162,13 +162,13 @@ form {
 /* Restrict the size of the textarea */
 textarea.form-control {
     max-width: 100%; /* Ensure it does not exceed the form width */
-    max-height: 150px; /* Set a maximum height */
+    max-height: 150px;
     resize: vertical; /* Allow vertical resizing only */
 }
 
 /* Scrollable plane list */
 .scrollable {
-    max-height: 200px; /* Adjust height as needed */
+    max-height: 200px;
     margin: 10px;
     overflow-y: auto;
 }
