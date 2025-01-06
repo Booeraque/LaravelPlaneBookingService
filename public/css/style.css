@@ -259,7 +259,7 @@ a.btn:hover, button:hover {
     color: #555;
 }
 
-.plane-item .remove-btn {
+.plane-item .btn, .plane-item button {
     flex: 1;
     text-align: center;
     background-color: #ff4d4d;
@@ -270,7 +270,7 @@ a.btn:hover, button:hover {
     cursor: pointer;
 }
 
-.plane-item .remove-btn:hover {
+.plane-item .btn:hover {
     background-color: #ff0000;
     transition: all 0.5s ease;
 }

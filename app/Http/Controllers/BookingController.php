@@ -13,7 +13,7 @@ class BookingController extends Controller
         public function index()
         {
             $user = auth()->user();
-            $bookings = $user->customer->bookings()->paginate(10); // Ensure pagination is used
+            $bookings = $user->customer->bookings()->paginate(6); // Ensure pagination is used
             return view('bookings', compact('bookings'));
         }
 
@@ -26,18 +26,18 @@ class BookingController extends Controller
     public function proceed()
     {
         $user = auth()->user();
-        $cart = $user->customer->shoppingCarts()->latest()->first();
+        $cart = $user->customer->shoppingCarts()->latest('id')->first();
         $workers = Worker::all();
 
         if (!$cart) {
-            return redirect()->route('shopping-cart.show', $user->customer->shoppingCarts()->latest()->first()->id)
+            return redirect()->route('shopping-cart.show', $user->customer->shoppingCarts()->latest('id')->first()->id)
                 ->with('error', 'No shopping cart found.');
         }
 
         return view('booking-proceed', compact('cart', 'workers'));
     }
 
-public function confirm(Request $request)
+    public function confirm(Request $request)
     {
         $user = auth()->user();
 
@@ -45,8 +45,7 @@ public function confirm(Request $request)
             return redirect()->back()->with('error', 'User or customer not found.');
         }
 
-        $cart = $user->customer->shoppingCarts()->latest()->first();
-
+        $cart = $user->customer->shoppingCarts()->latest('id')->first();
         if (!$cart) {
             return redirect()->back()->with('error', 'No shopping cart found.');
         }
@@ -63,6 +62,15 @@ public function confirm(Request $request)
         foreach ($cart->planes as $plane) {
             $plane->update(['status' => 'unavailable']);
         }
+
+        // Create a new shopping cart for the customer
+        $newCart = ShoppingCart::create([
+            'customer_id' => $user->customer->id,
+        ]);
+
+        // Assign the new shopping cart to the customer
+        $user->customer->shopping_cart_id = $newCart->id;
+        $user->customer->save();
 
         return redirect()->route('profile')->with('success', 'Booking confirmed.');
     }

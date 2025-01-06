@@ -5,6 +5,7 @@
         <h1>Edit Profile</h1>
         <form method="POST" action="{{ route('profile.update') }}">
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" value="{{ auth()->user()->username }}" required>

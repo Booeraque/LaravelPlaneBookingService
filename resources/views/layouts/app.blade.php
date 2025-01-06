@@ -26,8 +26,8 @@
                     @auth
                         @if(Auth::user()->customer)
                             @php
-                                $latestCart = Auth::user()->customer->shoppingCarts()->latest()->first();
-                                $planeCount = $latestCart ? $latestCart->planes->count() : 0;
+                                $latestCart = auth()->user()->customer->shoppingCarts()->latest('id')->first();
+                                $planeCount = $latestCart->planes->count();
                             @endphp
                             <a href="{{ route('shopping-cart.show', $latestCart->id) }}" class="chosen-planes">
                                 Chosen Planes: {{ $planeCount }}

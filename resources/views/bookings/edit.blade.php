@@ -1,5 +1,3 @@
-<!-- resources/views/bookings/edit.blade.php -->
-
 @extends('layouts.app')
 
 @section('content')
@@ -7,6 +5,7 @@
         <h1>Edit Booking</h1>
         <form method="POST" action="{{ route('bookings.update', $booking->id) }}">
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="worker_id">Choose Worker</label>
                 <select id="worker_id" name="worker_id" class="form-control">
@@ -19,20 +18,27 @@
                 <label for="additional_comments">Additional Comments</label>
                 <textarea id="additional_comments" name="additional_comments" class="form-control">{{ $booking->additional_comments }}</textarea>
             </div>
-            <h2>Chosen Planes</h2>
-            <ul class="plane-list">
-                @foreach($booking->shoppingCart->planes as $plane)
-                    <li class="plane-item">
-                        <a href="{{ route('planes.show', $plane->id) }}" class="plane-name">{{ $plane->plane_name }}</a>
-                        <span class="plane-info">Model: {{ $plane->model }} | Capacity: {{ $plane->capacity }}</span>
-                        <button type="button" class="btn remove-btn">Remove</button>
-                    </li>
-                @endforeach
-            </ul>
-            <div class="form-group button-group">
-                <button type="button" class="btn" onclick="history.back()">Cancel</button>
-                <button type="submit" class="btn">Update Booking</button>
+            <div class="button-group form-group">
+                <button type="submit" class="btn">Save Changes</button>
+                <button type="button" onclick="history.back()" class="btn">Back</button>
             </div>
         </form>
+
+        <h2>Chosen Planes</h2>
+        <ul class="plane-list scrollable">
+            @foreach($booking->shoppingCart->planes as $plane)
+                <div class="plane-wrapper">
+                    <li class="plane-item">
+                        <a href="{{ route('planes.show', $plane->id) }}">{{ $plane->plane_name }}</a>
+                        <span class="plane-info">Model: {{ $plane->model }} | Capacity: {{ $plane->capacity }}</span>
+                        <form method="POST" action="{{ route('cart.remove', $plane->id) }}" class="btn" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn">Remove</button>
+                        </form>
+                    </li>
+                </div>
+            @endforeach
+        </ul>
     </div>
 @endsection

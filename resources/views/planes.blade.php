@@ -23,10 +23,18 @@
 
         <!-- Plane List -->
         <ul class="plane-list">
-            @foreach($planes as $plane)
+            @foreach ($planes as $plane)
                 <li class="plane-item">
                     <a href="{{ route('planes.show', $plane->id) }}">{{ $plane->plane_name }}</a>
-                    <span class="plane-info">Status: {{ $plane->status }} | Capacity: {{ $plane->capacity }}</span>
+                    <span class="plane-info">Model: {{ $plane->model }} | Capacity: {{ $plane->capacity }}</span>
+                    @if ($isAdmin)
+                        <a href="{{ route('planes.edit', $plane->id) }}" class="btn">Edit</a>
+                        <form method="POST" action="{{ route('planes.destroy', $plane->id) }}" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn">Delete</button>
+                        </form>
+                    @endif
                 </li>
             @endforeach
         </ul>
