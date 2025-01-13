@@ -4,7 +4,7 @@
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/plane-booking-service.git
+    git clone https://github.com/booeraque/plane-booking-service.git
     cd plane-booking-service
     ```
 
