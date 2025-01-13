@@ -39,7 +39,7 @@
             @endforeach
         </ul>
 
-        <!-- Page Numbers -->
+        <!-- Page Numbers using Copilot AI assistant -->
         <div class="page-numbers">
             @foreach ($users->links()->elements as $element)
                 @if (is_string($element))

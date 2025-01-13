@@ -22,7 +22,7 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'username' => 'required|string|max:50',
+            'username' => 'required|string|max:50|unique:users,username,' . auth()->id(),
             'email' => 'required|string|email|max:50',
             'name' => 'required|string|max:50',
         ]);

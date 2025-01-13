@@ -293,7 +293,7 @@ a.btn:hover, button:hover {
     color: #555;
 }
 
-/* Header and Pagination Arrows */
+/* Header and Pagination Arrows using Copilot AI assistant*/
 .planes-header {
     display: flex;
     justify-content: space-between;
@@ -327,7 +327,7 @@ a.btn:hover, button:hover {
     color: #0056b3;
 }
 
-/* Page Numbers */
+/* Page Numbers using Copilot AI assistant */
 .page-numbers {
     display: flex;
     justify-content: center;

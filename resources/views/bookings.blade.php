@@ -34,7 +34,7 @@
                 @endforeach
             </ul>
 
-            <!-- Page Numbers with Buttons -->
+            <!-- Page Numbers with Buttons using Copilot AI assistant -->
             <div class="page-numbers">
                 @foreach ($bookings->links()->elements as $element)
                     @if (is_string($element))

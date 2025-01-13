@@ -34,7 +34,7 @@
                 @endforeach
             </ul>
 
-            <!-- Page Numbers with Buttons -->
+            <!-- Page Numbers with Buttons using Copilot AI assistant-->
             <div class="page-numbers">
                 <a href="{{ route('planes.index') }}" class="btn" style="margin-right: 10px;">Back to Planes</a>
                 @foreach ($planes->links()->elements as $element)
